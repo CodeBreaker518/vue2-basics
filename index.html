@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Vue 2</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <img v-on:mouseover="toggleShowPrices" v-on:mouseOut="toggleShowPrices" v-bind:src="img" :alt="name">
+    <!-- v-bind:src === :src -->
+
+    <h1>
+      {{name}}
+      <span v-if="changePercent > 0"> Mayor 0👍</span>
+      <span v-else-if="changePercent < 0"> Menor 0 👎</span>
+      <span v-else>✌️</span>
+      <!-- 
+      <span v-show="changePercent > 0"> Mayor 0👍</span>
+      <span v-show="changePercent < 0"> Menor 0 👎</span>
+      <span v-show="changePercent === 0">✌️</span> -->
+
+      <button v-on:click="toggleShowPrices">{{showPrices ? '🙊' : '🙈'}}</button>
+    </h1>
+
+    <!-- <ul>
+      <li v-for="(price, i) in prices" v-bind:key="price">
+        {{ i }} - {{price}}
+      </li>
+    </ul> -->
+
+    <ul v-show="showPrices">
+      <li v-for="(price, i) in pricesWithDays" v-bind:key="price.day">
+        {{ i }} - {{ price.day}} - {{ price.value }}
+      </li>
+    </ul>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>
